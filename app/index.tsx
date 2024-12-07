@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
+import {SvgUri} from "react-native-svg";
 import State from "../types";
 import { getStates } from "../api";
 
@@ -26,7 +27,7 @@ const Index = () => {
             style={styles.item}
             onPress={() => router.push({ pathname: "/state/[id]", params: { id: item.id.toString() } })}
           >
-            <Image source={{ uri: item.flag }} style={styles.flag} />
+            <SvgUri uri={item.flag} style={styles.flag}/>
             <Text style={styles.name}>{item.name}</Text>
           </TouchableOpacity>
         )}
@@ -38,8 +39,11 @@ const Index = () => {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: "#f9f9f9" },
   item: { flexDirection: "row", alignItems: "center", marginBottom: 16 },
-  flag: { width: 50, height: 30, marginRight: 12 },
+  flag: { maxWidth: 50, maxHeight: 30, marginRight: 12},
   name: { fontSize: 16, fontWeight: "bold" },
 });
 
 export default Index;
+
+//TODO
+//expo filesystem/asyncstorage gebruiken
