@@ -6,7 +6,9 @@ export default interface State {
     largest_city:string,
     admitted_to_union:string,
     population:string,
-    flag:string
+    flag:string,
+    latitude?:number,
+    longitude?:number,
 }
 export type RootStackParamList = {
     Home: undefined;
