@@ -16,7 +16,6 @@ const MapPage = () => {
       console.log("Fetching state data...");
       try {
         const data = await getStates();
-        console.log("States data:", data);
         const selectedState = data.find((s: any) => s.id === Number(id));
         console.log("Selected state:", selectedState);
         if (selectedState) {
