@@ -25,18 +25,27 @@ const StateForm = ({ existingState }: { existingState?: State }) => {
   };
 
   const handleSubmit = async () => {
+    // Simple validation (adjust as needed)
+    if (!stateData.name || !stateData.capital || !stateData.population) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+  
     try {
       if (id) {
-        await updateState(stateData.id, stateData);
+        // Update existing state
+        await updateState(Number(id), stateData);
         alert("State updated successfully");
       } else {
-        await addState(stateData);
+        // Add new state
+        const { id, ...newStateData } = stateData; // Exclude 'id' from newStateData
+        await addState(newStateData);
         alert("State added successfully");
       }
       router.push("/");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to save state");
+    } catch (error: any) {
+      console.error("Error in handleSubmit:", error);
+      alert(`Failed to save state: ${error.message}`);
     }
   };
 
@@ -73,12 +82,12 @@ const StateForm = ({ existingState }: { existingState?: State }) => {
         onChangeText={(text) => handleChange("admitted_to_union", text)}
       />
       <TextInput
-        style={styles.input}
-        placeholder="Population"
-        value={stateData.population.toString()}
-        onChangeText={(text) => handleChange("population", parseInt(text))}
-        keyboardType="numeric"
-      />
+  style={styles.input}
+  placeholder="Population"
+  value={stateData.population.toString()}
+  onChangeText={(text) => handleChange("population", text)}
+  keyboardType="numeric"
+/>
       <TextInput
         style={styles.input}
         placeholder="Flag URL"

@@ -50,7 +50,5 @@ const styles = StyleSheet.create({
 export default Index;
 
 //TODO
-//1. Styling toevoegen
-//2. Sommige flaggen laden niet
 //3. Code opschonen en optimaliseren en begrijpen 
-//4. API file apart? zie boven
+//4. put verwijderen
